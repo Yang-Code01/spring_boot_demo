@@ -1,0 +1,33 @@
+person:
+  boss: true
+  birth: 2021/10/03
+  age: 19
+  pet:
+    name: xiaohua
+    age: 4
+  interests:
+    - baseketball
+    - football
+    - tannies
+  animal: [xiaomao,xiaogou]
+  score:
+    english: 100
+    Chinese: 99
+
+  salaries:
+    [9999.78,9999.99]
+  allPets:
+    sick:
+      - {name: kk,age: 11}
+      - name: ss
+        age: 1
+      - name: tt
+        age: 2
+      - name: sdf
+        age: 2
+    healty:
+      - {name: lili,age: 3}
+      - {name: aaaa,age: 5}
+#  username: zhangshan
+  username: ssss
+

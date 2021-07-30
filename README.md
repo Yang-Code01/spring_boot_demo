@@ -78,4 +78,37 @@ ImportResource 用来导入 旧的 注册的大量bean
 org.springframework.boot.autoconfigure 找到这个包，然后找到对应的自动配置类，再找注解
 
 
+### 实践
 
+引入场景依赖
+
+查看自动配置了哪些
+
+是否需要修改参数
+
+    参照文档修改配置项
+
+    自己分析，xxxProperties 绑定了配置文件的哪些
+
+    自定义加入或替换组件 （@Bean @Component）
+
+    自定义器 xxxCustomizer;
+
+
+@Slf4j 来配置日志
+
+<!--开启 yml 文件的提示-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+<!--打包的时候排除开发阶段需要，部署的时候不需要的jar包-->
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                        <exclude>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                        </exclude>  
