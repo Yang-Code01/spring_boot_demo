@@ -1,4 +1,4 @@
-package com.qingmin.demo01;
+package com.qingmin.demo01.interfaceIsolation;
 
 /**
  * @author code-yang

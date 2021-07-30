@@ -1,4 +1,4 @@
-package com.qingmin.demo01;
+package com.qingmin.demo01.interfaceIsolation;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
