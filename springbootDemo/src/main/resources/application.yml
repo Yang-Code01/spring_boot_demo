@@ -49,7 +49,14 @@ spring:
   web:
     resources:
       static-locations: classpath:/mystatic/
+      add-mappings: true # false使所有的静态资源都不生效,禁用所有的静态资源的访问
 #  mvc:
 #    static-path-pattern: res/**
+      cache:
+        period: 11000
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true # 开启页面表单的Rest功能，前后端分离，就不用开启了，
 
 
