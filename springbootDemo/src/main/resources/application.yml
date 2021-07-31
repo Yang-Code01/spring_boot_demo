@@ -31,3 +31,25 @@ person:
 #  username: zhangshan
   username: ssss
 
+
+server:
+  port: 9000
+
+
+
+
+###指定静态资源的 访问前缀  会导致配置功能失效
+#spring:
+#  mvc:
+#    static-path-pattern: res/**
+
+
+#指定扫描哪个文件夹中的静态资源
+spring:
+  web:
+    resources:
+      static-locations: classpath:/mystatic/
+#  mvc:
+#    static-path-pattern: res/**
+
+

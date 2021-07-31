@@ -112,3 +112,12 @@ org.springframework.boot.autoconfigure 找到这个包，然后找到对应的�
                             <groupId>org.springframework.boot</groupId>
                             <artifactId>spring-boot-configuration-processor</artifactId>
                         </exclude>  
+
+
+静态资源的访问：
+源码：
+
+private static final String[] CLASSPATH_RESOURCE_LOCATIONS = new String[]{"classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/"};
+
+
+
