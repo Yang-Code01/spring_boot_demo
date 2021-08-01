@@ -48,7 +48,9 @@ server:
 spring:
   web:
     resources:
-      static-locations: classpath:/mystatic/
+      static-locations:
+      - classpath:/mystatic/
+      - classpath:/static/
       add-mappings: true # false使所有的静态资源都不生效,禁用所有的静态资源的访问
 #  mvc:
 #    static-path-pattern: res/**
