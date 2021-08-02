@@ -24,5 +24,20 @@
     <button>更新</button>
 </form>
 
+
+<!--数据绑定-->
+<form action="/saveHuman" method="post">
+    姓名： <input name="userName" value="zs"/> <br/>
+    年龄： <input name="age" value="22"/> <br/>
+    生日： <input name="birth" value="1999/01/22"/> <br/>
+<!--    &lt;!&ndash;   级联属性，自动注入 &ndash;&gt;-->
+<!--    宠物姓名：<input name="pet.name" value="阿喵"/><br/>-->
+<!--    宠物年龄：<input name="pet.age" value="2"/>-->
+
+<!--    自定义封装规则-->
+    宠物姓名,宠物年龄：<input name="pet" value="阿喵,22"/><br/>
+
+    <button>提交</button>
+</form>
 </body>
 </html>

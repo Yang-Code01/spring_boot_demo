@@ -1,5 +1,6 @@
 package com.qingmin.springbootdemo.controller;
 
+import com.qingmin.springbootdemo.bean.Human;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
@@ -43,6 +44,11 @@ public class RestFulController {
 
 
 
+    @PostMapping("/saveHuman")
+    public Human saveHuman(Human human){
+
+        return human;
+    }
 
 
 }

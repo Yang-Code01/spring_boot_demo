@@ -133,3 +133,25 @@ PathVariable,RequestHeader:springboot 底层都有一个kv均为String类型的M
 @RequestParam() Map<String,String> params
 
 @RequestBody 是一个将请求体整合成一个String类型，而不是和其他一样可以指定kv来获取
+
+
+@PathVariable、@RequestHeader、@ModelAttribute、@RequestParam、@MatrixVariable、@CookieValue、@RequestBody
+
+
+
+
+MatrixVariable 的使用，实现webMvcConfigurer接口，或者：
+
+     @Bean
+    public WebMvcConfigurer webMvcConfigurer(){
+        return new WebMvcConfigurer() {
+            @Override
+            public void configurePathMatch(PathMatchConfigurer configurer) {
+                UrlPathHelper urlPathHelper = new UrlPathHelper();
+                // 不移除分号后面的内容,使矩阵变量生效
+                urlPathHelper.setRemoveSemicolonContent(false);
+                configurer.setUrlPathHelper(urlPathHelper);
+            }
+        };
+    }
+

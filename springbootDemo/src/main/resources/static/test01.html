@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
     <a href="/test/1/zs?age=12&inters=basketball&inters=football">PathVariable</a>
+    <a href="/goto">RequestAttribute</a>
     <ul>
         <li>@PathVariable</li>
         <li>@RequestHeader</li>
         <li>@RequestParam</li>
         <li>@CookieValue</li>
         <li>@RequestBody</li>
+        <li>@RequestAttribute</li>
     </ul>
 
     <form action="/test" method="post">
@@ -20,5 +22,9 @@
 
         <button>提交</button>
     </form>
+    </br>
+
+    <a href="/cars/id=1;brand=byd,wl,xp">矩阵变量</a></br>
+    <a href="boss/id=1;age=22/id=2;age=33">矩阵变量1</a>
 </body>
 </html>

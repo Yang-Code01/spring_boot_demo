@@ -15,7 +15,7 @@ import java.util.Map;
  * @Throws
  */
 @RestController
-public class Parameter {
+public class ParameterController {
 
 
     // 请求参数的获取， @RequestParam()
@@ -30,9 +30,9 @@ public class Parameter {
             @RequestHeader Map<String,String> header,
             @RequestParam(value = "age",required = false) Integer age,
             @RequestParam(value = "inters",required = false) List<String> inters,
-            @RequestParam(required = false) Map<String,String> params,
-            @CookieValue("Idea-de297d9c") String Idea,
-            @CookieValue("Idea-de297d9c") Cookie cookies
+            @RequestParam(required = false) Map<String,String> params
+//            @CookieValue("Idea-de297d9c") String Idea,
+//            @CookieValue("Idea-de297d9c") Cookie cookies
            ){
         Map<String,Object> map = new HashMap<>();
 //        map.put("id",id);
@@ -42,10 +42,10 @@ public class Parameter {
 //        map.put("headers",header);
         map.put("age",age);
         map.put("inters",inters);
-        map.put("allRequestParams",params);
-        map.put("cookie1",Idea);
+//        map.put("allRequestParams",params);
+//        map.put("cookie1",Idea);
 
-        System.out.println(cookies.getName());
+//        System.out.println(cookies.getName());
 
         return map;
     }
@@ -65,4 +65,35 @@ public class Parameter {
 
         return map;
     }
+
+
+//    /cars/id=1;brand=byd,wl,xp
+    // 请求路径上必须用{}引起来后面的内容
+    @GetMapping("/cars/{path}")
+    public Map cars(@MatrixVariable("id") Integer id,
+                    @MatrixVariable("brand") List<String> brands
+                    //@PathVariable("path") String path
+                    ){
+
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("id",id);
+        map.put("brands",brands);
+        //map.put("path",path);
+        return map;
+    }
+
+
+    @GetMapping("/boss/{bossId}/{empId}")
+    public Map boss(@MatrixVariable(value = "age",pathVar = "bossId") Integer bossAge,
+                    @MatrixVariable(value = "age",pathVar = "empId") Integer empAge){
+        Map<String,Object> map = new HashMap<>();
+
+        map.put("bossAge",bossAge);
+        map.put("empAge",empAge);
+        return map;
+
+    }
+
+
 }
