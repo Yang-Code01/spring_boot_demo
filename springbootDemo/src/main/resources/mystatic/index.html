@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面</title>
+</head>
+<body>
+欢迎 restFul
+
+<form action="/user" method="get">
+    <button>查询</button>
+</form>
+<form action="/user" method="post">
+    <button>添加</button>
+</form>
+<form action="/user" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" name="_m" value="delete">
+    <button>删除</button>
+</form>
+<form action="/user" method="post">
+    <input type="hidden" name="_m" value="put">
+    <input type="hidden" name="_method" value="put">
+    <button>更新</button>
+</form>
+
+</body>
+</html>

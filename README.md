@@ -112,3 +112,24 @@ org.springframework.boot.autoconfigure 找到这个包，然后找到对应的�
                             <groupId>org.springframework.boot</groupId>
                             <artifactId>spring-boot-configuration-processor</artifactId>
                         </exclude>  
+
+
+静态资源的访问：
+源码：
+
+private static final String[] CLASSPATH_RESOURCE_LOCATIONS = new String[]{"classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/"};
+
+
+## dispatcherServlet 的分析（源码级别，日后探讨）：
+
+
+@PathVariable : 底层定义了一个 Map<String,String> ，用来存储路径上的参数
+
+PathVariable,RequestHeader:springboot 底层都有一个kv均为String类型的Map，
+@RequestHeader Map<String,String> header， 可以使用默认的map 来获取all参数
+
+@PathVariable Map<String,String> pv,
+
+@RequestParam() Map<String,String> params
+
+@RequestBody 是一个将请求体整合成一个String类型，而不是和其他一样可以指定kv来获取

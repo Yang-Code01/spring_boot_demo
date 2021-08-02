@@ -31,3 +31,34 @@ person:
 #  username: zhangshan
   username: ssss
 
+
+server:
+  port: 9000
+
+
+
+
+###指定静态资源的 访问前缀  会导致配置功能失效
+#spring:
+#  mvc:
+#    static-path-pattern: res/**
+
+
+#指定扫描哪个文件夹中的静态资源
+spring:
+  web:
+    resources:
+      static-locations:
+      - classpath:/mystatic/
+      - classpath:/static/
+      add-mappings: true # false使所有的静态资源都不生效,禁用所有的静态资源的访问
+#  mvc:
+#    static-path-pattern: res/**
+      cache:
+        period: 11000
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true # 开启页面表单的Rest功能，前后端分离，就不用开启了，
+
+

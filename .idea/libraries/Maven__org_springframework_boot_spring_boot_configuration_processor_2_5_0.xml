@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework.boot:spring-boot-configuration-processor:2.5.0">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot-configuration-processor/2.5.0/spring-boot-configuration-processor-2.5.0.jar!/" />
     </CLASSES>
     <JAVADOC>
@@ -8,6 +9,15 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot-configuration-processor/2.5.0/spring-boot-configuration-processor-2.5.0-sources.jar!/" />
+=======
+      <root url="jar://$PROJECT_DIR$/../../../maven_idea/repository/org/springframework/boot/spring-boot-configuration-processor/2.5.0/spring-boot-configuration-processor-2.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../maven_idea/repository/org/springframework/boot/spring-boot-configuration-processor/2.5.0/spring-boot-configuration-processor-2.5.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../maven_idea/repository/org/springframework/boot/spring-boot-configuration-processor/2.5.0/spring-boot-configuration-processor-2.5.0-sources.jar!/" />
+>>>>>>> origin/main
     </SOURCES>
   </library>
 </component>
