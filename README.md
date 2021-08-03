@@ -155,3 +155,15 @@ MatrixVariable 的使用，实现webMvcConfigurer接口，或者：
         };
     }
 
+
+### 内容协商（导入jkson-xml）
+根据客户端的接受能力的不同，返回不同媒体类型的数据
+
+1、判断当前响应头中是否已经有确定的媒体类型  MediaType
+
+2、获取客户端（PostMan、浏览器）支持接收的内容类型。（获取客户端Accept请求头字段）
+
+3、遍历循环所有当前系统的MessageConverter，看谁支持操作这个对象
+
+4、找到支持操作的对象类的Converter，把converter支持的媒体类型统计出来
+5、客户端需要【application/xml】 服务端能力【10种，json、xml。。】

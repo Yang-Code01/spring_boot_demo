@@ -1,6 +1,7 @@
 package com.qingmin.springbootdemo.controller;
 
 
+import org.junit.platform.engine.support.descriptor.FileSystemSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,4 +79,12 @@ public class RequestController {
         map.put("map","map参数");
         return "forward:success";
     }
+
+    @ResponseBody // RequestResponseBodyMethodProcessor -->messageConverter  内容协商
+    @GetMapping("/he11")
+    public FileSystemSource file(){
+        // 文件以这样的方式处理的（）
+        return null;
+    }
+
 }

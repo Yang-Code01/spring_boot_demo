@@ -57,6 +57,10 @@
             <artifactId>jquery</artifactId>
             <version>3.5.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-engine</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
