@@ -61,6 +61,12 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-engine</artifactId>
         </dependency>
+
+        <!--xml jaskson-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

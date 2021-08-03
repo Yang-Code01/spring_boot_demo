@@ -168,7 +168,7 @@ MatrixVariable 的使用，实现webMvcConfigurer接口，或者：
 4、找到支持操作的对象类的Converter，把converter支持的媒体类型统计出来
 5、客户端需要【application/xml】 服务端能力【10种，json、xml。。】
 
-
+##
 
     /**
      * 1、浏览器发请求直接返回xml  【application/xml】    jacksonXmlConverter
@@ -186,3 +186,5 @@ MatrixVariable 的使用，实现webMvcConfigurer接口，或者：
      *
      * @return
      */
+
+####  以参数的方式进行内容协商

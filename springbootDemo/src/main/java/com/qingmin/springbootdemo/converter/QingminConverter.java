@@ -11,6 +11,7 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -22,6 +23,8 @@ import java.util.List;
  */
 
 public class QingminConverter implements HttpMessageConverter<Person> {
+    // 自定义的 MediaType
+    private static final String APPLICATION_QINGMIN = "application/x-qingmin";
     @Override
     public boolean canRead(Class<?> clazz, MediaType mediaType) {
         return false;
@@ -38,7 +41,8 @@ public class QingminConverter implements HttpMessageConverter<Person> {
      */
     @Override
     public List<MediaType> getSupportedMediaTypes() {
-        return MediaType.parseMediaTypes("application/x-qingmin");
+        //MediaType.APPLICATION_JSON
+        return MediaType.parseMediaTypes(APPLICATION_QINGMIN);
     }
 
     @Override

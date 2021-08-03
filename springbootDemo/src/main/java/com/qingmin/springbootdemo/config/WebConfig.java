@@ -6,14 +6,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UrlPathHelper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author code-yang
@@ -33,9 +37,23 @@ public class WebConfig {
         return filter;
     }
 
+    /**
+     *自定义的 MediaType
+     */
+    private static final String APPLICATION_QINGMIN = "application/x-qingmin";
     @Bean
     public WebMvcConfigurer webMvcConfigurer(){
+
         return new WebMvcConfigurer() {
+
+            @Override
+            public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+                Map<String,MediaType> map = new HashMap<>();
+                map.put("json",MediaType.APPLICATION_JSON);
+                map.put("xml",MediaType.APPLICATION_ATOM_XML);
+                map.put("json",MediaType.parseMediaType(APPLICATION_QINGMIN));
+                configurer.mediaTypes(map);
+            }
 
             // 把自定义的者转换规则配置到Spring配置中
             @Override
