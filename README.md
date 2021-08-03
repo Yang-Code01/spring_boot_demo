@@ -167,3 +167,22 @@ MatrixVariable 的使用，实现webMvcConfigurer接口，或者：
 
 4、找到支持操作的对象类的Converter，把converter支持的媒体类型统计出来
 5、客户端需要【application/xml】 服务端能力【10种，json、xml。。】
+
+
+
+    /**
+     * 1、浏览器发请求直接返回xml  【application/xml】    jacksonXmlConverter
+     * 2、如果使ajax 请求，返回  json   【application/json】  jasksonJsonConverter
+     * 2、如果是app 发请求，返回自定义协议数据， 【application/x-qingmin】    xxxQingMinConverter
+     *  属性值1；属性值2
+     * 步骤：
+     * 1、添加自定义的MessageConverter 到 系统底层
+     * 2、系统底层就会统计出所有MessageConverter能操作那些类型
+     * 3、客户端内容协调【qingMin --->  QingMIi】
+     * 实现：
+     * 1、实现HttpMessageConverter 这个接口，实现所有方法，canWrite()设置为true ，getSupportedMediaTypes（）'
+     * 加入自定义的转换MediaType,write()通过这个方法写出数据
+     * 2、需要再我们的Webconfier中配置extendMessageConverters（）
+     *
+     * @return
+     */

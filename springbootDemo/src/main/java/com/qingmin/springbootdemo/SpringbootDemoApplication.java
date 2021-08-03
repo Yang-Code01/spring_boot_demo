@@ -11,6 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
+/**
+ * @author 可惜没有如果
+ */
+
 @SpringBootApplication // same as @SpringBootConfiguration @EnableAutoConfiguration @ComponentScan
 public class SpringbootDemoApplication {
 

@@ -1,15 +1,19 @@
 package com.qingmin.springbootdemo.config;
 
 import com.qingmin.springbootdemo.bean.Pet;
+import com.qingmin.springbootdemo.converter.QingminConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UrlPathHelper;
+
+import java.util.List;
 
 /**
  * @author code-yang
@@ -32,6 +36,13 @@ public class WebConfig {
     @Bean
     public WebMvcConfigurer webMvcConfigurer(){
         return new WebMvcConfigurer() {
+
+            // 把自定义的者转换规则配置到Spring配置中
+            @Override
+            public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+                converters.add(new QingminConverter());
+            }
+
             @Override
             public void configurePathMatch(PathMatchConfigurer configurer) {
                 UrlPathHelper urlPathHelper = new UrlPathHelper();
