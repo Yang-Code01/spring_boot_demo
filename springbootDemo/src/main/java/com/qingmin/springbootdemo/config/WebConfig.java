@@ -46,14 +46,14 @@ public class WebConfig {
 
         return new WebMvcConfigurer() {
 
-            @Override
+            /*@Override
             public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
                 Map<String,MediaType> map = new HashMap<>();
                 map.put("json",MediaType.APPLICATION_JSON);
                 map.put("xml",MediaType.APPLICATION_ATOM_XML);
                 map.put("json",MediaType.parseMediaType(APPLICATION_QINGMIN));
                 configurer.mediaTypes(map);
-            }
+            }*/
 
             // 把自定义的者转换规则配置到Spring配置中
             @Override

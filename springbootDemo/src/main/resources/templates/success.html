@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+hello 第一个thymeleaf
+<div th:text="${name}" > 默认值，未经过engine 渲染</div>
+<h3 href="https://www.mi.com" th:href="${link}">百度</h3>
+<h3 href="https://www.mi.com" th:href="@{link}">百度</h3>
+
+</body>
+ </html>

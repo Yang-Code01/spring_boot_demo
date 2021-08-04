@@ -34,6 +34,8 @@ person:
 
 server:
   port: 9000
+  servlet:
+    context-path: /qingmin #访问任何路径都必须加上该前缀
 
 
 
@@ -62,4 +64,9 @@ spring:
         enabled: true # 开启页面表单的Rest功能，前后端分离，就不用开启了，
     contentnegotiation:
       favor-parameter: true # 开启参数协调协商模式
+  thymeleaf:
+    prefix:
+      - classpath:/mytemplates/ #自己修改
+      - classpath:/templates/ # 默认
+
 

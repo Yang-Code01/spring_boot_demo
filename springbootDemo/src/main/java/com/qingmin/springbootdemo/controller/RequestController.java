@@ -29,7 +29,8 @@ public class RequestController {
         request.setAttribute("code",1234);
         session.setAttribute("msg","Session 中的数据");
 
-        return "redirect:success";// forward:
+        // forward:
+        return "redirect:success";
     }
     /*
     使用@RequsetAttribute(""),可以获取请求域中的数据

@@ -122,6 +122,15 @@ private static final String[] CLASSPATH_RESOURCE_LOCATIONS = new String[]{"class
 
 ## dispatcherServlet 的分析（源码级别，日后探讨）：
 
+    //    自定义 表单请求的 hiddenHttpMethod 请求参数过滤规则(针对于表单的自定义规则)
+    @Bean
+    public HiddenHttpMethodFilter httpMethodFilter(){
+        HiddenHttpMethodFilter filter = new HiddenHttpMethodFilter();
+        filter.setMethodParam("_m");
+        return filter;
+    }
+
+
 
 @PathVariable : 底层定义了一个 Map<String,String> ，用来存储路径上的参数
 
@@ -188,3 +197,13 @@ MatrixVariable 的使用，实现webMvcConfigurer接口，或者：
      */
 
 ####  以参数的方式进行内容协商
+
+
+
+## 视图解析与模板引擎
+
+1、视图解析
+
+处理方式： 转发、重定向、自定义视图
+
+

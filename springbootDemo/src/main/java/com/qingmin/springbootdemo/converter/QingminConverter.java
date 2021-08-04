@@ -23,7 +23,10 @@ import java.util.List;
  */
 
 public class QingminConverter implements HttpMessageConverter<Person> {
-    // 自定义的 MediaType
+
+    /**
+     * 自定义的 MediaType
+     */
     private static final String APPLICATION_QINGMIN = "application/x-qingmin";
     @Override
     public boolean canRead(Class<?> clazz, MediaType mediaType) {
