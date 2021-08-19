@@ -7,11 +7,11 @@
 
 
 
- proxyBeanMethods 代理bean的方法
+ - proxyBeanMethods 代理bean的方法
 
-  Full :proxyBeanMethods = true
+ - Full :proxyBeanMethods = true
 
-  Lite :proxyBeanMethods = false
+ - Lite :proxyBeanMethods = false
 
  应对组件依赖问题
 
@@ -19,19 +19,19 @@
 
 #### 配置类组件之间有依赖关系，方法会调用容器中的单实例组件，使用Full 模式
 
-@Import({User.class, DBHelper.class})
+- @Import({User.class, DBHelper.class})
 
-Import 的参数是一个class类型的数组，里面可以导入任意的第三方组件，id默认是全类名，我们使用@Bean注册的组件和这个导入的组件不是同一个
+- Import 的参数是一个class类型的数组，里面可以导入任意的第三方组件，id默认是全类名，我们使用@Bean注册的组件和这个导入的组件不是同一个
 
 
-@Conditional 条件装备
+- @Conditional 条件装备
 
 ![img.png](img.png)
 
 
-@ImportResource("classpath:/beans.xml")
+- @ImportResource("classpath:/beans.xml")
 
-ImportResource 用来导入 旧的 注册的大量bean
+- ImportResource 用来导入 旧的 注册的大量bean
 
 ## 配置绑定的几种方式
 
@@ -60,6 +60,7 @@ ImportResource 用来导入 旧的 注册的大量bean
 
 
 ## Springboot 配置原理
+```
 1、Spring先加载所有的自动配置类 xxxAutoConfiguration
 
 2、每个自动配置类按照条件进行生效，默认都会绑定配置文件指定的值，xxxProperties 里面拿， xxxProperties 和配置文件进行了绑定
@@ -77,6 +78,21 @@ ImportResource 用来导入 旧的 注册的大量bean
 
 org.springframework.boot.autoconfigure 找到这个包，然后找到对应的自动配置类，再找注解
 
+
+
+```
+
+```html
+ 参照文档修改配置项
+
+    自己分析，xxxProperties 绑定了配置文件的哪些
+
+    自定义加入或替换组件 （@Bean @Component）
+
+    自定义器 xxxCustomizer;
+
+
+```
 
 ### 实践
 
