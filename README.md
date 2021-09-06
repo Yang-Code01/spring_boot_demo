@@ -223,3 +223,117 @@ MatrixVariable 的使用，实现webMvcConfigurer接口，或者：
 处理方式： 转发、重定向、自定义视图
 
 
+
+
+CAS
+中的ABA问题
+
+- 什么是ABA问题： 多个线程操作原子类，当线程1和线程2同时操作，线程2在线程1还没有执行到比较和交换之前，已经执行了修改多次操作，并且，
+在执行完成后将数据该回，导致当线程1cas时，发现期望数据是一致的，会执行修改
+  
+    - 1线程  copy A  -- 执行--- 
+    - 2线程  copy A  -- 执行--  CAS --- 修改为 B --- CAS，修改完成，再次 copy ， 修改 为 A  CAS 修改完成
+    - 1线程 CAS 发现 期望数据是A， 执行
+    
+    在此过程中， 线程1的CAS 只能保证 开头和结尾的数据一致性， 中间可能被修改，无法顾及
+
+-- 原子引用 
+
+```java
+public class AtomicReferenceDemo {
+
+    public static void main(String[] args) {
+        User zs = new User("zs", 11);
+        User ls = new User("ls",13);
+
+        AtomicReference<User> userAtomicReference = new AtomicReference<>();
+
+        userAtomicReference.set(zs);
+        System.out.println(userAtomicReference.compareAndSet(zs, ls)+"\t"+userAtomicReference.get());
+        System.out.println(userAtomicReference.compareAndSet(zs, ls)+"\t"+userAtomicReference.get());
+
+
+    }
+}
+
+```
+如何解决 ABA问题？ 时间戳原子引用
+
+```java
+package com.arrayExe.cas;
+
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicStampedReference;
+
+/**
+ * @author code-yang
+ * @date 2021/9/6 16:21
+ * @Description
+ * @Return
+ * @Throws
+ */
+public class ABADemo {
+    
+    public static AtomicReference atomicReference = new AtomicReference(100);
+
+    public static AtomicStampedReference stampedReference = new AtomicStampedReference(100,1);
+
+
+    public static void main(String[] args) {
+        System.out.println("---ABA问题----");
+        new Thread(() -> {
+            // 线程一先执行完成
+            System.out.println("t1 f:"+atomicReference.compareAndSet(100, 101)+"当前值："+atomicReference.get());
+            System.out.println("t1 s:"+atomicReference.compareAndSet(101, 100)+"当前值："+atomicReference.get());
+        },"t1").start();
+        
+        new Thread(() -> {
+            // 暂停线程
+            try { TimeUnit.SECONDS.sleep(1);}catch (Exception e) { e.printStackTrace();}
+
+            boolean b = atomicReference.compareAndSet(100, 300);
+            System.out.println("t2:"+b+"\t"+"当前值："+atomicReference.get());
+
+
+        },"t2").start();
+        
+        // 暂停线程
+        try { TimeUnit.SECONDS.sleep(3);}catch (Exception e) { e.printStackTrace();}
+        
+
+        System.out.println("----ABA问题的解决----");
+
+
+        new Thread(() -> {
+            System.out.println("t3线程开始");
+            // 戳
+            int stamp = stampedReference.getStamp();
+            // 戳 --1 --》2 --》3
+            System.out.println("初始戳："+stamp);
+            stampedReference.compareAndSet(100,101,stampedReference.getStamp(),stampedReference.getStamp()+1);
+            System.out.println("stampedReference.getStamp() = " + stampedReference.getStamp());
+            stampedReference.compareAndSet(101,100,stampedReference.getStamp(),stampedReference.getStamp()+1);
+            System.out.println("stampedReference.getStamp() = " + stampedReference.getStamp());
+            System.out.println("t3线程结束");
+        },"t3").start();
+
+        new Thread(() -> {
+            System.out.println("t4线程开始");
+            // 暂停线程
+            try { TimeUnit.SECONDS.sleep(5);}catch (Exception e) { e.printStackTrace();}
+
+            int stamp = stampedReference.getStamp();
+            System.out.println("戳："+stamp);
+            // 预期值一样，但戳不一样
+            boolean result = stampedReference.compareAndSet(100,200,1,2);
+            System.out.println("result = " + result);
+            System.out.println("当前戳：" + stampedReference.getStamp());
+
+            System.out.println("t4线程结束");
+        },"t4").start();
+    }
+}
+
+```
+

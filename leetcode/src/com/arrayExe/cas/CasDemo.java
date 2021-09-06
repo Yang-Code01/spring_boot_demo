@@ -21,7 +21,7 @@ public class CasDemo {
         AtomicInteger atomicInteger = new AtomicInteger(5);
 
         System.out.println(atomicInteger.compareAndSet(5, 1024)+"\t corrent:" + atomicInteger.get());
-        System.out.println(atomicInteger.compareAndSet(5, 10)+"\t corrent:" + atomicInteger.get());
+        System.out.println(atomicInteger.compareAndSet(1024, 10)+"\t corrent:" + atomicInteger.get());
 
     }
 
