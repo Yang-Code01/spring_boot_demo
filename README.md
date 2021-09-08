@@ -223,8 +223,9 @@ MatrixVariable 的使用，实现webMvcConfigurer接口，或者：
 处理方式： 转发、重定向、自定义视图
 
 
+## 面试相关
 
-
+### CAS
 CAS
 中的ABA问题
 
@@ -336,6 +337,7 @@ public class ABADemo {
 }
 
 ```
+### 锁
 
 自旋锁： 当一个线程获取锁的时候，另一个线程会再此获取时会一直循环获取，直到另一个线程释放锁，他才会获取到，不断的循环。
 与互斥锁不同的是，互斥锁获取不到锁后，由 运行-->阻塞 ，而 自旋会 一直 运行-->(循环获取，直到获取到锁) 
@@ -426,4 +428,167 @@ public class SpinLock {
 
 }
 ```
+
+读写锁
+ReentrantReadWriteLock
+
+```java
+package com.arrayExe.lock;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+/**
+ * @author code-yang
+ * @date 2021/9/8 15:19
+ * @Description 读写分离实验
+ * @Return
+ * @Throws
+ */
+
+class MyCache{
+    // 保证写完之后，立即更新到主存中，使用volatile 保证可见性
+    private volatile Map<String, Object> map = new HashMap<>();
+    // 读写锁
+    /**
+     * 写的时候保证一个线程从头执行到尾，读的时候允许多个线程并发读
+     */
+    private ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
+
+
+    public void put(String key,Object value){
+        rwLock.writeLock().lock();
+        try {
+            System.out.println(Thread.currentThread().getName() +":正在写入："+key);
+            map.put(key, value);
+            System.out.println(Thread.currentThread().getName() +"：写入完成");
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            rwLock.writeLock().unlock();
+        }
+    }
+
+    public void get(String key){
+        rwLock.readLock().lock();
+        try {
+            System.out.println(Thread.currentThread().getName() +":正在读取："+key );
+            Object result = map.get(key);
+            System.out.println(Thread.currentThread().getName() +":读取完成；");
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            rwLock.readLock().unlock();
+        }
+    }
+
+
+}
+
+/**
+ * @author AVTNTW672
+ */
+public class ReadWriteLock {
+
+    public static void main(String[] args) {
+        MyCache myCache = new MyCache();
+
+        for (int i = 0; i < 5; i++) {
+            final int tempKey = i;
+            new Thread(() -> {
+                myCache.put(tempKey+"",tempKey+"");
+            },String.valueOf(i)).start();
+        }
+
+        for (int i = 0; i < 5; i++) {
+            final int tempKey = i;
+            new Thread(() -> {
+                myCache.get(tempKey+"");
+            },String.valueOf(i)).start();
+        }
+    }
+
+
+}
+
+```
+
+CountDownLatch
+
+```java
+package com.arrayExe.lock.enumt;
+
+import java.util.concurrent.CountDownLatch;
+
+/**
+ * @author code-yang
+ * @date 2021/9/8 15:58
+ * @Description 通过秦灭六国的例子模拟前提条件都完成才执行其他线程
+ * @Return
+ * @Throws
+ */
+public class CountDownLatchDemo {
+
+    public static void main(String[] args) throws InterruptedException {
+        CountDownLatch countDownLatch = new CountDownLatch(6);
+
+        for (int i = 1; i <= 6; i++) {
+            new Thread(() -> {
+                System.out.println(Thread.currentThread().getName() +"灭国");
+                // 计数器每次执行一次就减一
+                countDownLatch.countDown();
+            },CountryEnum.forEach_CountryEnum(i).getGetRetValue()).start();
+        }
+        // 只有countDownLatch coutDown 完成后才通知
+        countDownLatch.await();
+        System.out.println("秦朝统一");
+
+    }
+}
+
+```
+枚举：
+```java
+package com.arrayExe.lock.enumt;
+
+import lombok.Getter;
+
+/**
+ * @author code-yang
+ * @date 2021/9/8 16:07
+ * @Description 向 数据库中 的table 一样 定义数据
+ * @Return
+ * @Throws
+ */
+public enum CountryEnum {
+
+    ONE(1,"齐国"),TWO(2,"楚国"),THREE(3,"韩国"),FOUR(4,"赵国"),FIVE(5,"魏国"),SIX(6,"燕国");
+
+    CountryEnum(Integer getRetId, String getRetValue) {
+        this.getRetId = getRetId;
+        this.getRetValue = getRetValue;
+    }
+
+    @Getter private Integer getRetId; 
+    @Getter private String getRetValue;
+
+    /**
+     * 通过索引拿数据
+     */
+    public static CountryEnum forEach_CountryEnum(int index){
+        CountryEnum[] countryEnums = CountryEnum.values();
+        for (CountryEnum countryEnum : countryEnums) {
+            if (countryEnum.getRetId == index){
+                return countryEnum;
+            }
+        }
+        return null;
+    }
+
+
+}
+
+```
+
 
