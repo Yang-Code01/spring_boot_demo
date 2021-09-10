@@ -339,7 +339,7 @@ public class ABADemo {
 ```
 ### 锁
 
-自旋锁： 当一个线程获取锁的时候，另一个线程会再此获取时会一直循环获取，直到另一个线程释放锁，他才会获取到，不断的循环。
+#### 自旋锁： 当一个线程获取锁的时候，另一个线程会再此获取时会一直循环获取，直到另一个线程释放锁，他才会获取到，不断的循环。
 与互斥锁不同的是，互斥锁获取不到锁后，由 运行-->阻塞 ，而 自旋会 一直 运行-->(循环获取，直到获取到锁) 
 ```text
 何谓自旋锁？它是为实现保护共享资源而提出一种锁机制。其实，自旋锁与互斥锁比较类似，它们都是为了解决对某项资源的互斥使用。
@@ -429,7 +429,7 @@ public class SpinLock {
 }
 ```
 
-读写锁
+#### 读写锁
 ReentrantReadWriteLock
 
 ```java
@@ -514,7 +514,7 @@ public class ReadWriteLock {
 
 ```
 
-CountDownLatch
+### CountDownLatch
 
 ```java
 package com.arrayExe.lock.enumt;
@@ -548,7 +548,7 @@ public class CountDownLatchDemo {
 }
 
 ```
-枚举：
+### 枚举：
 ```java
 package com.arrayExe.lock.enumt;
 
@@ -591,7 +591,7 @@ public enum CountryEnum {
 
 ```
 
-CyclicBarrier
+###CyclicBarrier
 
 ```java
 package com.arrayExe.lock.enumt;
@@ -640,7 +640,7 @@ public class CyclicBarrierDemo {
 
 多个线程抢多个资源
 
-Semaphore:
+### Semaphore:
 
 ```java
 package com.arrayExe.lock.enumt;
@@ -680,3 +680,5 @@ public class SemaphoreDemo {
 }
 
 ```
+
+
