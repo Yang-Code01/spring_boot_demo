@@ -2,6 +2,8 @@ package com.arrayExe;
 
 import lombok.Data;
 
+import java.util.Vector;
+
 /**
  * @author code-yang
  * @date 2021/8/3 14:21
@@ -32,6 +34,11 @@ class ListNode{
 
 public class Test02 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        //TS t =  new T();
+
+
+
+
         ListNode head = null, tail = null;
         int carry = 0;
         while (l1 != null || l2 != null) {
@@ -61,3 +68,28 @@ public class Test02 {
 
 
 }
+
+abstract class A{
+    abstract void k();
+}
+
+
+abstract class C{
+
+}
+
+abstract class B extends A{
+    abstract void t();
+}
+
+
+abstract class  T{
+    int name;
+    public int a = 0;
+}
+
+class TS extends T{
+
+}
+
+
