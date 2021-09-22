@@ -15,7 +15,7 @@ public class LockFair {
     public static void main(String[] args) {
 
 
-        ReentrantLock reentrantLock = new ReentrantLock();
+        ReentrantLock reentrantLock = new ReentrantLock(true);
 
 
     }

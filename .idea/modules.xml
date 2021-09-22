@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/designPattern/designPattern.iml" filepath="$PROJECT_DIR$/designPattern/designPattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/leetcode/leetcode.iml" filepath="$PROJECT_DIR$/leetcode/leetcode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nio/nio.iml" filepath="$PROJECT_DIR$/nio/nio.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/spring_boot_demo.iml" filepath="$PROJECT_DIR$/.idea/spring_boot_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/springbootDemo/springbootDemo.iml" filepath="$PROJECT_DIR$/springbootDemo/springbootDemo.iml" />
     </modules>
