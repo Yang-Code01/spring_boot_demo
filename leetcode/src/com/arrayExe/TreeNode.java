@@ -74,7 +74,7 @@ class Solution{
     public ArrayList<Integer> GetLeastNumbers_Solution(int [] input, int k) {
         // 排序
         Arrays.sort(input);
-        ArrayList<Integer> list = new ArrayList<>();
+        ArrayList  <Integer> list = new ArrayList<>();
         // 取值
         for (int i = 0; i < k; i++){
             list.add(input[i]);
